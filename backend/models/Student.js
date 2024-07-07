@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../db/db");
+const Staff = require("./Staff");
 
 const Student = sequelize.define("Student", {
   enrollment_number: {
@@ -30,6 +31,13 @@ const Student = sequelize.define("Student", {
     validate: {
       isEmail: true, // Validate email format
     },
+  },
+});
+
+// Define association with Staff model
+Student.belongsTo(Staff, {
+  foreignKey: {
+    allowNull: false,
   },
 });
 

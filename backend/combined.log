@@ -1,0 +1,43 @@
+2024-07-07 23:10:48 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:10:48 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:10:48 info: Database connected successfully.
+2024-07-07 23:10:48 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Staffs' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:10:48 info: Executing (default): SHOW INDEX FROM `Staffs`
+2024-07-07 23:10:48 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Students' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:10:48 info: Executing (default): SHOW INDEX FROM `Students`
+2024-07-07 23:11:19 info: Executing (default): SELECT `id`, `email`, `password`, `createdAt`, `updatedAt` FROM `Staffs` AS `Staff` WHERE `Staff`.`email` = 'abigayasiva@gmail.com' LIMIT 1;
+2024-07-07 23:11:19 info: Executing (default): SELECT `id`, `enrollment_number`, `student_first_name`, `student_last_Name`, `phone_number`, `email`, `createdAt`, `updatedAt`, `StaffId` FROM `Students` AS `Student`;
+2024-07-07 23:11:19 info: Executing (default): SELECT `id`, `enrollment_number`, `student_first_name`, `student_last_Name`, `phone_number`, `email`, `createdAt`, `updatedAt`, `StaffId` FROM `Students` AS `Student`;
+2024-07-07 23:13:15 info: Executing (default): SELECT `id`, `email`, `password`, `createdAt`, `updatedAt` FROM `Staffs` AS `Staff` WHERE `Staff`.`email` = 'abigayasiva@gmail.com' LIMIT 1;
+2024-07-07 23:13:15 info: Executing (default): SELECT `id`, `enrollment_number`, `student_first_name`, `student_last_Name`, `phone_number`, `email`, `createdAt`, `updatedAt`, `StaffId` FROM `Students` AS `Student`;
+2024-07-07 23:13:15 info: Executing (default): SELECT `id`, `enrollment_number`, `student_first_name`, `student_last_Name`, `phone_number`, `email`, `createdAt`, `updatedAt`, `StaffId` FROM `Students` AS `Student`;
+2024-07-07 23:22:05 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:22:05 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:22:05 info: Database connected successfully.
+2024-07-07 23:22:05 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Staffs' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:22:05 info: Executing (default): SHOW INDEX FROM `Staffs`
+2024-07-07 23:22:05 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Students' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:22:05 info: Executing (default): SHOW INDEX FROM `Students`
+2024-07-07 23:23:48 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:23:48 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:23:48 info: Database connected successfully.
+2024-07-07 23:23:48 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Staffs' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:23:48 info: Executing (default): SHOW INDEX FROM `Staffs`
+2024-07-07 23:23:48 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Students' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:23:48 info: Executing (default): SHOW INDEX FROM `Students`
+2024-07-07 23:26:06 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:26:06 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:26:06 info: Database connected successfully.
+2024-07-07 23:26:06 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Staffs' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:26:06 info: Executing (default): SHOW INDEX FROM `Staffs`
+2024-07-07 23:26:06 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Students' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:26:06 info: Executing (default): SHOW INDEX FROM `Students`
+2024-07-07 23:28:04 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:28:04 info: Executing (default): SELECT 1+1 AS result
+2024-07-07 23:28:04 info: Database connected successfully.
+2024-07-07 23:28:04 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Staffs' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:28:04 info: Executing (default): CREATE TABLE IF NOT EXISTS `Staffs` (`id` INTEGER auto_increment , `email` VARCHAR(255) NOT NULL, `password` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+2024-07-07 23:28:04 info: Executing (default): SHOW INDEX FROM `Staffs`
+2024-07-07 23:28:04 info: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Students' AND TABLE_SCHEMA = 'abcd'
+2024-07-07 23:28:04 info: Executing (default): CREATE TABLE IF NOT EXISTS `Students` (`id` INTEGER NOT NULL auto_increment , `enrollment_number` VARCHAR(255) NOT NULL, `student_first_name` VARCHAR(255) NOT NULL, `student_last_Name` VARCHAR(255) NOT NULL, `phone_number` VARCHAR(255) NOT NULL, `email` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `StaffId` INTEGER NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`StaffId`) REFERENCES `Staffs` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE) ENGINE=InnoDB;
+2024-07-07 23:28:04 info: Executing (default): SHOW INDEX FROM `Students`

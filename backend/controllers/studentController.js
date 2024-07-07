@@ -9,6 +9,8 @@ async function createStudent(req, res) {
       phone_number,
       email,
     } = req.body;
+    const staff_id = req.user.id;
+    console.log(req.user.id);
 
     const newStudent = await Student.create({
       enrollment_number,
@@ -16,6 +18,7 @@ async function createStudent(req, res) {
       student_last_Name,
       phone_number,
       email,
+      StaffId: staff_id,
     });
 
     res
@@ -69,6 +72,7 @@ async function updateStudent(req, res) {
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
+    const { staff_id } = req.user.id;
 
     await student.update({
       enrollment_number,
@@ -76,6 +80,7 @@ async function updateStudent(req, res) {
       student_last_Name,
       phone_number,
       email,
+      StaffId: staff_id,
     });
 
     res.json({ message: "Student updated successfully", student });
