@@ -1,0 +1,26 @@
+.container {
+    max-width: 900px;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+.card-header {
+    background: linear-gradient(90deg, rgba(33, 150, 243, 1) 0%, rgba(30, 110, 213, 1) 100%);
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}

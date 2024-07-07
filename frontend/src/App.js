@@ -6,7 +6,6 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import View from "./pages/Views";
 import Edit from "./pages/Edit";
-// import Delete from "./Delete";
 import Add from "./pages/Add";
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
         <Route path="/add" element={<Add />} />
         <Route path="/view/:id" element={<View />} />
         <Route path="/edit/:id" element={<Edit />} />
-        {/* <Route path="/delete/:id" element={<Delete />} /> */}
       </Routes>
     </BrowserRouter>
   );

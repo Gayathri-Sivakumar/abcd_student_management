@@ -1,23 +1,30 @@
 const express = require("express");
 const cors = require("cors");
+const studentRoutes = require("./routes/studentRoutes");
+const authRoutes = require("./routes/authRoutes");
+const sequelize = require("./db/db");
+const { authenticateToken } = require("./middlewares/authMiddleware");
 
 const app = express();
 const port = 8081;
 
-const authRoutes = require("./routes/authRoutes");
-const studentRoutes = require("./routes/studentRoutes");
-
-app.use(cors({ origin: "http://localhost:8081" }));
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 
-// Middleware to log requests
-app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  next();
-});
-app.use("/api/auth", authRoutes);
-app.use("/api/students", studentRoutes);
+app.use("/students", authenticateToken, studentRoutes);
+app.use("/auth", authRoutes);
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Database connection has been established successfully.");
+
+    await sequelize.sync(); // Sync all defined models to the DB
+
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+})();

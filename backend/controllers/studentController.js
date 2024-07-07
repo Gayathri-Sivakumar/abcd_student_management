@@ -1,6 +1,6 @@
-const { executeQuery } = require("../models/db");
+const Student = require("../models/Student");
 
-const createStudent = async (req, res) => {
+async function createStudent(req, res) {
   try {
     const {
       enrollment_number,
@@ -10,56 +10,52 @@ const createStudent = async (req, res) => {
       email,
     } = req.body;
 
-    if (enrollment_number.length !== 6 || phone_number.length !== 10) {
-      return res.status(400).json({ message: "Invalid input" });
-    }
-
-    const sql = `
-      INSERT INTO student (enrollment_number, student_first_name, student_last_Name, phone_number, email)
-      VALUES (?, ?, ?, ?, ?)`;
-    const params = [
+    const newStudent = await Student.create({
       enrollment_number,
       student_first_name,
       student_last_Name,
       phone_number,
       email,
-    ];
+    });
 
-    await executeQuery(sql, params);
-    res.status(201).json({ message: "Student created successfully" });
+    res
+      .status(201)
+      .json({ message: "Student created successfully", student: newStudent });
   } catch (error) {
+    console.error("Error creating student:", error);
     res.status(500).json({ message: "Error creating student" });
   }
-};
+}
 
-const getAllStudents = async (req, res) => {
+async function getAllStudents(req, res) {
   try {
-    const sql = `SELECT * FROM student`;
-    const students = await executeQuery(sql);
+    const students = await Student.findAll();
     res.json(students);
   } catch (error) {
+    console.error("Error fetching students:", error);
     res.status(500).json({ message: "Error fetching students" });
   }
-};
+}
 
-const getStudentById = async (req, res) => {
+async function getStudentById(req, res) {
   try {
-    const sql = `SELECT * FROM student WHERE id = ?`;
-    const student = await executeQuery(sql, [req.params.id]);
+    const id = req.params.id;
+    const student = await Student.findByPk(id);
 
-    if (student.length === 0) {
+    if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    res.json(student[0]);
+    res.json(student);
   } catch (error) {
+    console.error("Error fetching student:", error);
     res.status(500).json({ message: "Error fetching student" });
   }
-};
+}
 
-const updateStudent = async (req, res) => {
+async function updateStudent(req, res) {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const {
       enrollment_number,
       student_first_name,
@@ -68,39 +64,43 @@ const updateStudent = async (req, res) => {
       email,
     } = req.body;
 
-    const sql = `
-      UPDATE student SET
-        enrollment_number = ?,
-        student_first_name = ?,
-        student_last_Name = ?,
-        phone_number = ?,
-        email = ?
-      WHERE id = ?`;
-    const params = [
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    await student.update({
       enrollment_number,
       student_first_name,
       student_last_Name,
       phone_number,
       email,
-      id,
-    ];
+    });
 
-    await executeQuery(sql, params);
-    res.json({ message: "Student updated successfully" });
+    res.json({ message: "Student updated successfully", student });
   } catch (error) {
+    console.error("Error updating student:", error);
     res.status(500).json({ message: "Error updating student" });
   }
-};
+}
 
-const deleteStudent = async (req, res) => {
+async function deleteStudent(req, res) {
   try {
-    const sql = `DELETE FROM student WHERE id = ?`;
-    await executeQuery(sql, [req.params.id]);
+    const id = req.params.id;
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    await student.destroy();
     res.json({ message: "Student deleted successfully" });
   } catch (error) {
+    console.error("Error deleting student:", error);
     res.status(500).json({ message: "Error deleting student" });
   }
-};
+}
 
 module.exports = {
   createStudent,

@@ -2,7 +2,7 @@ import React from "react";
 import "./GetStarted.css";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import Getstarted from "../../assets/cover1.jpg";
+import Getstarted from "../../assets/cover3.png";
 const LandingPage = () => {
   const navigate = useNavigate();
 
@@ -11,8 +11,7 @@ const LandingPage = () => {
       <div className="GetStarted">
         <div className="l">
           <div className="firstline">
-            “Education is not the filling of a pail, but the lighting of a
-            fire.”
+            "Empowering students, enriching futures."
             <div className="para">
               <div className="first">
                 <p>Get into </p>
@@ -22,7 +21,6 @@ const LandingPage = () => {
               variant="contained"
               onClick={() => navigate("/login")}
               sx={{
-                backgroundColor: "#ff1493",
                 maxWidth: "50%",
                 alignItems: "center",
                 textAlign: "center",

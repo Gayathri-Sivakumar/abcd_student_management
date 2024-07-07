@@ -1,6 +1,6 @@
 const mysql = require("mysql2/promise");
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = require("../config/env");
-const logger = require("../utills/logger");
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = require("./env");
+const logger = require("../utils/logger");
 
 const dbConfig = {
   host: DB_HOST,

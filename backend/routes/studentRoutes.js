@@ -1,4 +1,5 @@
 const express = require("express");
+const router = express.Router();
 const {
   createStudent,
   getAllStudents,
@@ -6,14 +7,11 @@ const {
   updateStudent,
   deleteStudent,
 } = require("../controllers/studentController");
-const verifyToken = require("../middlewares/verifyToken");
 
-const router = express.Router();
-
-router.post("/", verifyToken, createStudent);
-router.get("/", verifyToken, getAllStudents);
-router.get("/:id", verifyToken, getStudentById);
-router.put("/:id", verifyToken, updateStudent);
-router.delete("/:id", verifyToken, deleteStudent);
+router.post("/", createStudent);
+router.get("/", getAllStudents);
+router.get("/:id", getStudentById);
+router.put("/:id", updateStudent);
+router.delete("/:id", deleteStudent);
 
 module.exports = router;
