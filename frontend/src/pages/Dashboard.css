@@ -24,3 +24,19 @@
     background-color: #dc3545;
     border-color: #dc3545;
 }
+
+.table-responsive {
+    overflow-y: auto;
+}
+
+.table-responsive.scrollable {
+    max-height: 60vh;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    background: #007bff;
+    color: white;
+    z-index: 1000;
+}

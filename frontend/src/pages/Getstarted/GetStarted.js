@@ -3,9 +3,9 @@ import "./GetStarted.css";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import Getstarted from "../../assets/cover3.png";
+
 const LandingPage = () => {
   const navigate = useNavigate();
-
   return (
     <div className="GetStartedinside">
       <div className="GetStarted">
@@ -14,7 +14,7 @@ const LandingPage = () => {
             "Empowering students, enriching futures."
             <div className="para">
               <div className="first">
-                <p>Get into </p>
+                <p>ABC College Student Management System </p>
               </div>
             </div>
             <Button

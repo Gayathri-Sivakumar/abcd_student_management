@@ -1,35 +1,32 @@
-import React, { useState } from "react";
-import { Grid, TextField, Button, Paper, Typography } from "@mui/material";
+import React, { useState, useContext } from "react";
+import {
+  Grid,
+  TextField,
+  Button,
+  Paper,
+  Typography,
+  Alert,
+} from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import { Alert } from "react-bootstrap";
-const Login = (props) => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
+import AuthContext from "../context/AuthContext";
+
+const Login = () => {
+  const { login } = useContext(AuthContext);
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({});
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const validateForm = () => {
+    const newErrors = {};
     let valid = true;
-    const newErrors = {
-      email: "",
-      password: "",
-    };
 
     if (!formData.email || !/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = "Invalid email address";
@@ -45,34 +42,26 @@ const Login = (props) => {
     return valid;
   };
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     try {
       const response = await axios.post(
         "http://localhost:8081/auth/login",
         formData
       );
-      console.log("Full response:", response);
-      if (response && response.data) {
-        console.log("Response data:", response.data);
-        localStorage.setItem("authToken", response.data.token);
+      if (response?.data) {
+        login({ token: response.data.token });
         navigate("/dashboard");
       } else {
-        console.error("Unexpected response structure:", response);
-        setError("An error occurred. Please try again later.");
+        setError("Unexpected response structure.");
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        console.error("Error response data:", error.response.data);
-        setError(error.response.data.error);
-      } else {
-        console.error("Error:", error.message);
-        setError("An error occurred. Please try again later.");
-      }
+      setError(
+        error.response?.data?.error ||
+          "An error occurred. Please try again later."
+      );
     }
   };
 
@@ -91,11 +80,11 @@ const Login = (props) => {
           className="login-paper"
         >
           <div className="login-content">
-            {error && <Alert variant="danger">{error}</Alert>}
+            {error && <Alert severity="error">{error}</Alert>}
             <Typography component="h1" variant="h5">
               Welcome Back
             </Typography>
-            <form onSubmit={handleSubmit} className="login-form">
+            <form onSubmit={handleLogin} className="login-form">
               <TextField
                 id="email"
                 label="E-mail"

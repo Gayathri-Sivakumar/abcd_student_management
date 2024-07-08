@@ -32,7 +32,12 @@ async function createStudent(req, res) {
 
 async function getAllStudents(req, res) {
   try {
-    const students = await Student.findAll();
+    const staffId = req.user.id;
+    const students = await Student.findAll({
+      where: {
+        staffId: staffId,
+      },
+    });
     res.json(students);
   } catch (error) {
     console.error("Error fetching students:", error);

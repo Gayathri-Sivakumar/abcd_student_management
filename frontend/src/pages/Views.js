@@ -44,7 +44,7 @@ function View() {
           </div>
           <div className="mb-3">
             <strong>Name:</strong>{" "}
-            {`${student.student_first_name} ${student.student_last_name}`}
+            {`${student.student_first_name} ${student.student_last_Name}`}
           </div>
           <div className="mb-3">
             <strong>Phone Number:</strong> {student.phone_number}
